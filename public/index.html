@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>LifeSave - Smart Blood Donation & Emergency Support</title><link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+<header class="main-header"><div class="brand-container"><h1 class="brand-name">🩸 LifeSave</h1><p class="brand-subtitle">A Smart Blood Donation & Emergency Support System</p></div><nav class="centered-nav"><a class="active" href="index.html">Home</a><a data-guest href="login.html">Login</a><a data-guest href="register.html">Become a Donor</a><a data-auth class="hidden" href="dashboard.html">Dashboard</a><button data-auth class="nav-button hidden" id="logoutBtn">Logout</button></nav></header>
+<main>
+<section class="hero-section"><div class="hero-copy"><span class="eyebrow">FAST • PRIVATE • COMMUNITY-POWERED</span><h2>Emergency Blood & Support System</h2><p>Find eligible blood donors near your location in seconds.</p></div><div class="search-box"><h3>Search Available Donors</h3><form id="searchForm"><select id="bloodGroup"><option value="">All Blood Groups</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select><input id="location" placeholder="City or District (e.g. Dhaka)"><div class="search-actions"><button type="submit">Search Donors</button><button type="button" class="secondary-btn" id="nearbyBtn">Use My Location</button></div></form></div></section>
+<section class="stats-strip"><div><strong id="statDonors">—</strong><span>matching donors</span></div><div><strong>8</strong><span>blood groups</span></div><div><strong>24/7</strong><span>emergency access</span></div></section>
+<section class="donor-results-section"><div class="section-heading"><div><span class="eyebrow red">DONOR DIRECTORY</span><h2>Available Blood Donors</h2></div><a class="text-link" href="requests.html">View blood requests →</a></div><div class="donor-cards-container" id="donorList"></div><p id="donorEmpty" class="empty-state hidden">No donors match your search.</p></section>
+<section class="emergency-section"><span class="eyebrow red">BANGLADESH EMERGENCY SUPPORT</span><h2>🚨 Emergency Hotlines</h2><div class="card-container"><div class="card"><h3>National Emergency</h3><p class="phone">📞 999</p><p>Police, Ambulance & Fire Service</p></div><div class="card"><h3>Fire Service</h3><p class="phone">📞 102</p><p>Emergency Fire & Rescue Service</p></div><div class="card"><h3>Health Hotline</h3><p class="phone">📞 16263</p><p>24/7 Doctor Consultation & Advice</p></div></div></section>
+</main><footer>LifeSave • Built for faster donor discovery and safer emergency coordination.</footer>
+<script src="scripts/api.js"></script><script src="scripts/auth.js"></script><script src="scripts/app.js"></script>
+</body></html>

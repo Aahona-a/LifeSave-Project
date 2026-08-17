@@ -1,0 +1,2 @@
+document.addEventListener('DOMContentLoaded',()=>{const user=getStoredUser();document.querySelectorAll('[data-auth]').forEach(el=>el.classList.toggle('hidden',!user));document.querySelectorAll('[data-guest]').forEach(el=>el.classList.toggle('hidden',!!user));document.querySelectorAll('#logoutBtn').forEach(btn=>btn.addEventListener('click',()=>{clearSession();location.href='index.html'}));});
+function requireAuth(){if(!getToken()){location.href='login.html';return false}return true}
