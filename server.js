@@ -1,0 +1,42 @@
+require('dotenv').config();
+const path = require('path');
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const authRoutes = require('./backend/routes/authRoutes');
+const profileRoutes = require('./backend/routes/profileRoutes');
+const donorRoutes = require('./backend/routes/donorRoutes');
+const bloodRequestRoutes = require('./backend/routes/bloodRequestRoutes');
+const donationRoutes = require('./backend/routes/donationRoutes');
+const notificationRoutes = require('./backend/routes/notificationRoutes');
+const adminRoutes = require('./backend/routes/adminRoutes');
+const { notFound, errorHandler } = require('./backend/middleware/errorHandler');
+const app = express();
+const PORT = Number(process.env.PORT || 5000);
+app.disable('x-powered-by');
+app.use(helmet({
+  contentSecurityPolicy: { directives: { defaultSrc: ["'self'"], scriptSrc: ["'self'"], styleSrc: ["'self'", "'unsafe-inline'"], imgSrc: ["'self'", 'data:', 'https://images.unsplash.com'], connectSrc: ["'self'"] } },
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
+}));
+app.use(cors({ origin: process.env.FRONTEND_ORIGIN || `http://localhost:${PORT}`, credentials: false }));
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
+app.use('/api', rateLimit({ windowMs: 15 * 60 * 1000, limit: 300, standardHeaders: 'draft-7', legacyHeaders: false }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
+app.use('/api/donors', donorRoutes);
+app.use('/api/blood-requests', bloodRequestRoutes);
+app.use('/api/blood-request', bloodRequestRoutes);
+app.use('/api/donations', donationRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/admin', adminRoutes);
+app.get('/api/health', (req, res) => res.json({ success: true, message: 'LifeSave API is running' }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api', notFound);
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.use(errorHandler);
+app.listen(PORT, () => console.log(`LifeSave running at http://localhost:${PORT}`));

@@ -1,0 +1,13 @@
+const router=require('express').Router();
+const c=require('../controllers/donorController');
+const auth=require('../middleware/auth');
+const validate=require('../middleware/validate');
+const {donorQueryRules}=require('../utils/validators');
+router.get('/',donorQueryRules,validate,c.list);
+router.get('/me',auth,c.me);
+router.post('/become',auth,c.become);
+router.patch('/availability',auth,c.availability);
+router.patch('/last-donation',auth,c.lastDonation);
+router.get('/:id/contact',auth,c.contact);
+router.get('/:id',c.getOne);
+module.exports=router;

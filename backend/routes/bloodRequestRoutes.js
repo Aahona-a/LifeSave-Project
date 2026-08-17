@@ -1,0 +1,14 @@
+const router=require('express').Router();
+const auth=require('../middleware/auth');
+const validate=require('../middleware/validate');
+const {requestRules}=require('../utils/validators');
+const c=require('../controllers/bloodRequestController');
+router.use(auth);
+router.get('/open',c.open);
+router.post('/',requestRules,validate,c.create);
+router.get('/mine',c.mine);
+router.get('/:id',c.getOne);
+router.post('/:id/accept',c.accept);
+router.patch('/:id/status',c.status);
+router.post('/:id/complete',c.completeAccepted);
+module.exports=router;

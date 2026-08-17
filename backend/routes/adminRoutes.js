@@ -1,0 +1,18 @@
+const router=require('express').Router();
+const auth=require('../middleware/auth');
+const roles=require('../middleware/roles');
+const validate=require('../middleware/validate');
+const {loginRules}=require('../utils/validators');
+const authController=require('../controllers/authController');
+const c=require('../controllers/adminController');
+router.post('/login',loginRules,validate,authController.adminLogin);
+router.use(auth,roles('admin'));
+router.get('/users',c.users);
+router.patch('/users/:id/status',c.userStatus);
+router.get('/donors',c.donors);
+router.patch('/donors/:id/availability',c.donorAvailability);
+router.get('/blood-requests',c.requests);
+router.patch('/blood-requests/:id/status',c.requestStatus);
+router.get('/analytics',c.analytics);
+router.get('/reports',c.report);
+module.exports=router;
