@@ -1,0 +1,17 @@
+LifeSave Validation Report
+==========================
+
+Completed offline checks:
+- All project JavaScript files pass `node --check` syntax validation.
+- All relative CommonJS require() targets resolve to project files.
+- All local HTML script/stylesheet/page references resolve.
+- Required deliverables are present: database.sql, .env.example, README.md, API_DOCUMENTATION.md, DEPLOYMENT.md, package.json, server.js.
+- No MongoDB/Mongoose references or placeholder backend messages remain in the completed codebase.
+- Seed bcrypt hashes were verified against:
+  admin@lifesave.local / admin123
+  abdullah@lifesave.local / donor123
+  rahim@lifesave.local / user123
+
+Environment limitation:
+- npm dependency download timed out in the sandbox, so a live dependency-backed server/MySQL integration test could not be completed here.
+- Run `npm install`, `npm run db:init`, and `npm start` on the target machine with XAMPP MySQL running for the final local integration test.

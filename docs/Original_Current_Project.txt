@@ -1,0 +1,1846 @@
+LIFESAVE PROJECT
+CURRENT PROJECT CODE & STRUCTURE
+
+==================================================
+PROJECT INFORMATION
+===================
+
+Project Name:
+LifeSave – A Smart Blood Donation & Emergency Support System
+
+Current Stage:
+Frontend prototype completed. Full-stack backend, database, authentication, APIs, dashboard, security, and final integration are still required.
+
+IMPORTANT:
+This file contains my CURRENT project code.
+Use this code as the starting point.
+Do not unnecessarily rebuild the project from scratch.
+Analyze the existing implementation and improve/complete it.
+
+==================================================
+CURRENT PROJECT STRUCTURE
+=========================
+
+LifeSave-Project/
+
+├── index.html
+├── login.html
+├── register.html
+├── style.css
+└── script.js
+
+==================================================
+FILE 1: index.html
+==================
+
+[START index.html]
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeSave - A Smart Blood Donation & Emergency Support System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+```
+<header class="main-header">
+    <div class="brand-container">
+        <h1 class="brand-name">🩸 LifeSave</h1>
+        <p class="brand-subtitle">
+            A Smart Blood Donation & Emergency Support System
+        </p>
+    </div>
+
+    <nav class="centered-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Become a Donor</a>
+    </nav>
+</header>
+
+<section class="hero-section">
+    <h2>Emergency Blood & Support System</h2>
+
+    <p>
+        Find eligible blood donors near your location in seconds
+    </p>
+
+    <div class="search-box">
+
+        <h3>Search Available Donors</h3>
+
+        <form id="searchForm"
+              onsubmit="event.preventDefault(); filterDonors();">
+
+            <select id="bloodGroup" required>
+
+                <option value="">
+                    Select Blood Group
+                </option>
+
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+
+            </select>
+
+            <input
+                type="text"
+                id="location"
+                placeholder="City or District (e.g. Dhaka)"
+                required
+            >
+
+            <button type="submit">
+                Search Donors
+            </button>
+
+        </form>
+
+    </div>
+</section>
+
+
+<section class="donor-results-section">
+
+    <h2>Available Blood Donors</h2>
+
+    <div
+        class="donor-cards-container"
+        id="donorList">
+    </div>
+
+</section>
+
+
+<section class="emergency-section">
+
+    <h2>🚨 Emergency Hotlines</h2>
+
+    <div class="card-container">
+
+        <div class="card">
+
+            <h3>National Emergency</h3>
+
+            <p class="phone">
+                📞 999
+            </p>
+
+            <p>
+                Police, Ambulance & Fire Service
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Fire Service</h3>
+
+            <p class="phone">
+                📞 102
+            </p>
+
+            <p>
+                Emergency Fire & Rescue Service
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Health Hotline</h3>
+
+            <p class="phone">
+                📞 16263
+            </p>
+
+            <p>
+                24/7 Doctor Consultation & Advice
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script src="script.js"></script>
+
+<script>
+
+    function checkAuthToViewContact(phoneNum) {
+
+        let isLoggedIn = false;
+
+        if (!isLoggedIn) {
+
+            alert(
+                "For privacy protection, please LOGIN to view full contact numbers."
+            );
+
+            window.location.href = "login.html";
+
+        } else {
+
+            alert(
+                "Donor Contact Number: " + phoneNum
+            );
+
+        }
+
+    }
+
+</script>
+```
+
+</body>
+</html>
+
+[END index.html]
+
+==================================================
+FILE 2: login.html
+==================
+
+[START login.html]
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Login - LifeSave</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<header class="main-header">
+
+    <div class="brand-container">
+
+        <h1 class="brand-name">
+            🩸 LifeSave
+        </h1>
+
+        <p class="brand-subtitle">
+            A Smart Blood Donation & Emergency Support System
+        </p>
+
+    </div>
+
+
+    <nav class="centered-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="login.html" class="active">
+            Login
+        </a>
+
+        <a href="register.html">
+            Become a Donor
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="form-container">
+
+    <div class="form-box">
+
+        <h2>
+            Account Login
+        </h2>
+
+
+        <form
+            id="loginForm"
+            onsubmit="event.preventDefault(); alert('Login functionality will connect with Backend!');"
+        >
+
+            <div class="input-group">
+
+                <label for="loginEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="user@example.com"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="********"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Login
+            </button>
+
+
+            <p
+                style="
+                    text-align: center;
+                    margin-top: 15px;
+                    font-size: 0.9rem;
+                "
+            >
+
+                Don't have an account?
+
+                <a
+                    href="register.html"
+                    style="
+                        color: #d9534f;
+                        font-weight: bold;
+                    "
+                >
+                    Create New Account
+                </a>
+
+            </p>
+
+        </form>
+
+    </div>
+
+</section>
+```
+
+</body>
+</html>
+
+[END login.html]
+
+==================================================
+FILE 3: register.html
+=====================
+
+[START register.html]
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Register - LifeSave</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<header class="main-header">
+
+    <div class="brand-container">
+
+        <h1 class="brand-name">
+            🩸 LifeSave
+        </h1>
+
+        <p class="brand-subtitle">
+            A Smart Blood Donation & Emergency Support System
+        </p>
+
+    </div>
+
+
+    <nav class="centered-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="login.html">
+            Login
+        </a>
+
+        <a href="register.html" class="active">
+            Become a Donor
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="form-container">
+
+    <div class="form-box">
+
+        <h2>
+            Create New Account
+        </h2>
+
+
+        <form
+            id="registerForm"
+            onsubmit="handleRegistration(event)"
+        >
+
+            <div class="input-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="John Doe"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="john@example.com"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="017XXXXXXXX"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="gender">
+                    Gender (for Profile Avatar)
+                </label>
+
+                <select id="gender" required>
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="male">
+                        Male
+                    </option>
+
+                    <option value="female">
+                        Female
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="********"
+                    required
+                >
+
+            </div>
+
+
+            <hr style="margin: 15px 0;">
+
+
+            <div class="checkbox-group">
+
+                <input
+                    type="checkbox"
+                    id="isDonor"
+                >
+
+                <label for="isDonor">
+
+                    <strong>
+                        I want to register as a Blood Donor
+                    </strong>
+
+                </label>
+
+            </div>
+
+
+            <div
+                id="donorFields"
+                style="
+                    display: none;
+                    margin-top: 15px;
+                "
+            >
+
+                <div class="input-group">
+
+                    <label for="age">
+                        Age (Min 18 years)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        min="18"
+                        max="65"
+                        placeholder="e.g. 22"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="weight">
+                        Weight in kg (Min 50 kg)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="weight"
+                        min="40"
+                        placeholder="e.g. 62"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="bloodGroupReg">
+                        Blood Group
+                    </label>
+
+                    <select id="bloodGroupReg">
+
+                        <option value="">
+                            Select Group
+                        </option>
+
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="regLocation">
+                        Current Area / City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="regLocation"
+                        placeholder="e.g. Dhanmondi, Dhaka"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="lastDonation">
+                        Last Donation Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="lastDonation"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Register Account
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<script>
+
+    const isDonorCheckbox =
+        document.getElementById('isDonor');
+
+    const donorFields =
+        document.getElementById('donorFields');
+
+
+    isDonorCheckbox.addEventListener(
+        'change',
+        function() {
+
+            donorFields.style.display =
+                this.checked ? 'block' : 'none';
+
+        }
+    );
+
+
+    function handleRegistration(e) {
+
+        e.preventDefault();
+
+
+        if (isDonorCheckbox.checked) {
+
+            const age =
+                parseInt(
+                    document.getElementById('age').value
+                );
+
+            const weight =
+                parseFloat(
+                    document.getElementById('weight').value
+                );
+
+
+            if (age < 18) {
+
+                alert(
+                    "Registration Failed: You must be at least 18 years old to donate blood."
+                );
+
+                return;
+
+            }
+
+
+            if (weight < 50) {
+
+                alert(
+                    "Registration Failed: Your weight must be at least 50 kg to donate blood."
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        alert(
+            "Registration successful! (Ready for Backend Integration)"
+        );
+
+    }
+
+</script>
+```
+
+</body>
+</html>
+
+[END register.html]
+
+==================================================
+FILE 4: style.css
+=================
+
+[START style.css]
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+  'Segoe UI',
+  Tahoma,
+  Geneva,
+  Verdana,
+  sans-serif;
+  }
+
+body {
+background-color: #f8f9fa;
+color: #333;
+}
+
+/* Centered Header & Branding */
+
+.main-header {
+background-color: #d9534f;
+color: white;
+text-align: center;
+padding: 25px 20px 15px;
+box-shadow:
+0 2px 10px rgba(0,0,0,0.1);
+}
+
+.brand-container {
+margin-bottom: 15px;
+}
+
+.brand-name {
+font-size: 2.8rem;
+font-weight: 800;
+letter-spacing: 1px;
+}
+
+.brand-subtitle {
+font-size: 1.1rem;
+font-weight: 400;
+margin-top: 5px;
+opacity: 0.95;
+font-style: italic;
+}
+
+/* Centered Navbar */
+
+.centered-nav {
+display: flex;
+justify-content: center;
+gap: 25px;
+border-top:
+1px solid rgba(255,255,255,0.2);
+padding-top: 12px;
+}
+
+.centered-nav a {
+color: white;
+text-decoration: none;
+font-weight: 500;
+font-size: 1rem;
+transition: 0.3s;
+}
+
+.centered-nav a.active,
+.centered-nav a:hover {
+text-decoration: underline;
+font-weight: bold;
+}
+
+/* Hero Section */
+
+.hero-section {
+
+```
+background:
+    linear-gradient(
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.6)
+    ),
+    url('https://images.unsplash.com/photo-1615461066841-6116e61058f4?q=80&w=1000')
+    center/cover;
+
+color: white;
+text-align: center;
+padding: 50px 20px;
+```
+
+}
+
+.hero-section h2 {
+font-size: 2rem;
+margin-bottom: 8px;
+}
+
+/* Search Box */
+
+.search-box {
+
+```
+background: white;
+color: #333;
+
+max-width: 500px;
+
+margin: 25px auto 0;
+
+padding: 25px;
+
+border-radius: 8px;
+
+box-shadow:
+    0 4px 10px rgba(0,0,0,0.15);
+```
+
+}
+
+.search-box h3 {
+margin-bottom: 15px;
+color: #d9534f;
+}
+
+.search-box form {
+
+```
+display: flex;
+
+flex-direction: column;
+
+gap: 12px;
+```
+
+}
+
+.search-box select,
+.search-box input,
+.search-box button {
+
+```
+padding: 12px;
+
+border:
+    1px solid #ccc;
+
+border-radius: 5px;
+
+font-size: 1rem;
+```
+
+}
+
+.search-box button {
+
+```
+background-color: #d9534f;
+
+color: white;
+
+border: none;
+
+font-weight: bold;
+
+cursor: pointer;
+
+transition: 0.3s;
+```
+
+}
+
+.search-box button:hover {
+background-color: #c9302c;
+}
+
+/* Donor Cards Section */
+
+.donor-results-section {
+
+```
+padding: 40px 20px;
+
+max-width: 1000px;
+
+margin: 0 auto;
+```
+
+}
+
+.donor-results-section h2 {
+
+```
+text-align: center;
+
+margin-bottom: 25px;
+```
+
+}
+
+.donor-cards-container {
+
+```
+display: flex;
+
+gap: 20px;
+
+justify-content: center;
+
+flex-wrap: wrap;
+```
+
+}
+
+.donor-card {
+
+```
+background: white;
+
+border-radius: 10px;
+
+padding: 20px;
+
+width: 300px;
+
+box-shadow:
+    0 4px 8px rgba(0,0,0,0.1);
+
+border-left:
+    5px solid #d9534f;
+```
+
+}
+
+.donor-header {
+
+```
+display: flex;
+
+align-items: center;
+
+gap: 15px;
+
+margin-bottom: 15px;
+```
+
+}
+
+.avatar {
+
+```
+width: 50px;
+
+height: 50px;
+
+border-radius: 50%;
+```
+
+}
+
+.badge {
+
+```
+font-size: 0.75rem;
+
+padding: 3px 8px;
+
+border-radius: 12px;
+
+color: white;
+```
+
+}
+
+.badge.male {
+background-color: #0275d8;
+}
+
+.badge.female {
+background-color: #e83e8c;
+}
+
+.donor-details p {
+
+```
+margin: 8px 0;
+
+font-size: 0.95rem;
+```
+
+}
+
+.blood-type {
+
+```
+color: #d9534f;
+
+font-weight: bold;
+```
+
+}
+
+.distance {
+
+```
+color: #28a745;
+
+font-weight: bold;
+```
+
+}
+
+.protected-phone {
+
+```
+font-family: monospace;
+
+letter-spacing: 1px;
+
+color: #666;
+```
+
+}
+
+.contact-btn {
+
+```
+width: 100%;
+
+background: #d9534f;
+
+color: white;
+
+border: none;
+
+padding: 10px;
+
+margin-top: 15px;
+
+border-radius: 5px;
+
+cursor: pointer;
+
+font-weight: bold;
+```
+
+}
+
+/* Emergency Support Hotline Cards */
+
+.emergency-section {
+
+```
+padding: 50px 20px;
+
+text-align: center;
+```
+
+}
+
+.emergency-section h2 {
+margin-bottom: 30px;
+}
+
+.card-container {
+
+```
+display: flex;
+
+justify-content: center;
+
+gap: 20px;
+
+flex-wrap: wrap;
+```
+
+}
+
+.card {
+
+```
+background: white;
+
+padding: 20px;
+
+border-radius: 8px;
+
+width: 280px;
+
+box-shadow:
+    0 2px 8px rgba(0,0,0,0.1);
+
+border-top:
+    4px solid #d9534f;
+```
+
+}
+
+.card .phone {
+
+```
+font-size: 1.4rem;
+
+font-weight: bold;
+
+color: #d9534f;
+
+margin: 10px 0;
+```
+
+}
+
+/* Form Layouts */
+
+.form-container {
+
+```
+display: flex;
+
+justify-content: center;
+
+padding: 40px 20px;
+```
+
+}
+
+.form-box {
+
+```
+background: white;
+
+padding: 30px;
+
+border-radius: 8px;
+
+width: 100%;
+
+max-width: 450px;
+
+box-shadow:
+    0 4px 10px rgba(0,0,0,0.1);
+```
+
+}
+
+.form-box h2 {
+
+```
+text-align: center;
+
+margin-bottom: 20px;
+
+color: #d9534f;
+```
+
+}
+
+.input-group {
+
+```
+display: flex;
+
+flex-direction: column;
+
+margin-bottom: 15px;
+```
+
+}
+
+.input-group label {
+
+```
+margin-bottom: 5px;
+
+font-size: 0.9rem;
+
+font-weight: 600;
+```
+
+}
+
+.input-group input,
+.input-group select {
+
+```
+padding: 10px;
+
+border:
+    1px solid #ccc;
+
+border-radius: 5px;
+```
+
+}
+
+.checkbox-group {
+
+```
+display: flex;
+
+align-items: center;
+
+gap: 10px;
+```
+
+}
+
+.submit-btn {
+
+```
+width: 100%;
+
+background-color: #28a745;
+
+color: white;
+
+border: none;
+
+padding: 12px;
+
+border-radius: 5px;
+
+font-size: 1rem;
+
+font-weight: bold;
+
+cursor: pointer;
+
+margin-top: 15px;
+```
+
+}
+
+[END style.css]
+
+==================================================
+FILE 5: script.js
+=================
+
+[START script.js]
+
+// Sample Donors JSON Array
+
+let donors = [
+
+```
+{
+    name: "Abdullah Al Mamun",
+    gender: "male",
+    bloodGroup: "A+",
+    age: 24,
+    weight: 68,
+    location: "Dhaka",
+    lat: 23.7461,
+    lon: 90.3742,
+    phone: "01712345689",
+    lastDonation: "2026-02-10"
+},
+
+{
+    name: "Nivedita Saha",
+    gender: "female",
+    bloodGroup: "O+",
+    age: 22,
+    weight: 54,
+    location: "Dhaka",
+    lat: 23.8103,
+    lon: 90.3612,
+    phone: "01898765432",
+    lastDonation: "2026-07-01"
+}
+```
+
+];
+
+// 1. Calculate Eligibility Logic
+
+function isEligible(lastDonationDate, gender) {
+
+```
+if (!lastDonationDate) {
+
+    return {
+        status: true,
+        msg: "Available"
+    };
+
+}
+
+
+const lastDate =
+    new Date(lastDonationDate);
+
+const today =
+    new Date();
+
+
+const diffTime =
+    Math.abs(today - lastDate);
+
+
+const diffDays =
+    Math.ceil(
+        diffTime /
+        (1000 * 60 * 60 * 24)
+    );
+
+
+const requiredDays =
+    (gender === 'female')
+        ? 120
+        : 90;
+
+
+if (diffDays >= requiredDays) {
+
+    return {
+        status: true,
+        msg: "Available"
+    };
+
+} else {
+
+    const remaining =
+        requiredDays - diffDays;
+
+    return {
+        status: false,
+        msg: `Eligible in ${remaining} days`
+    };
+
+}
+```
+
+}
+
+// 2. Haversine Distance Calculation
+
+function calculateDistance(
+lat1,
+lon1,
+lat2,
+lon2
+) {
+
+```
+const R = 6371;
+
+const dLat =
+    (lat2 - lat1) *
+    Math.PI / 180;
+
+const dLon =
+    (lon2 - lon1) *
+    Math.PI / 180;
+
+
+const a =
+
+    Math.sin(dLat / 2) *
+    Math.sin(dLat / 2)
+
+    +
+
+    Math.cos(
+        lat1 * Math.PI / 180
+    )
+
+    *
+
+    Math.cos(
+        lat2 * Math.PI / 180
+    )
+
+    *
+
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
+
+
+const c =
+    2 *
+    Math.atan2(
+        Math.sqrt(a),
+        Math.sqrt(1 - a)
+    );
+
+
+return (
+    R * c
+).toFixed(1);
+```
+
+}
+
+// 3. Render Donor Cards
+
+function displayDonors(donorArray) {
+
+```
+const container =
+    document.getElementById(
+        'donorList'
+    );
+
+
+if (!container) {
+    return;
+}
+
+
+container.innerHTML = '';
+
+
+const userLat = 23.7509;
+
+const userLon = 90.3935;
+
+
+donorArray.forEach(
+    donor => {
+
+        const distance =
+            calculateDistance(
+                userLat,
+                userLon,
+                donor.lat,
+                donor.lon
+            );
+
+
+        const eligibility =
+            isEligible(
+                donor.lastDonation,
+                donor.gender
+            );
+
+
+        const avatarImg =
+            donor.gender === 'female'
+
+                ? 'https://cdn-icons-png.flaticon.com/512/4140/4140047.png'
+
+                : 'https://cdn-icons-png.flaticon.com/512/4140/4140048.png';
+
+
+        const cardHTML = `
+
+            <div class="donor-card">
+
+                <div class="donor-header">
+
+                    <img
+                        src="${avatarImg}"
+                        alt="Avatar"
+                        class="avatar"
+                    >
+
+                    <div>
+
+                        <h3>
+                            ${donor.name}
+                        </h3>
+
+                        <span
+                            class="badge ${donor.gender}"
+                        >
+                            ${donor.gender.toUpperCase()}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="donor-details">
+
+                    <p>
+                        🩸
+                        <strong>
+                            Blood Group:
+                        </strong>
+
+                        <span class="blood-type">
+                            ${donor.bloodGroup}
+                        </span>
+                    </p>
+
+
+                    <p>
+                        👤
+                        <strong>
+                            Age:
+                        </strong>
+
+                        ${donor.age} yrs
+
+                        |
+
+                        ⚖️
+                        <strong>
+                            Weight:
+                        </strong>
+
+                        ${donor.weight} kg
+                    </p>
+
+
+                    <p>
+                        📍
+                        <strong>
+                            Location:
+                        </strong>
+
+                        ${donor.location}
+                    </p>
+
+
+                    <p>
+                        📏
+                        <strong>
+                            Distance:
+                        </strong>
+
+                        <span class="distance">
+                            ${distance} km away
+                        </span>
+                    </p>
+
+
+                    <p>
+                        🔒
+                        <strong>
+                            Phone:
+                        </strong>
+
+                        <span class="protected-phone">
+                            ${donor.phone.substring(0, 3)}
+                            ******
+                            ${donor.phone.substring(9)}
+                        </span>
+                    </p>
+
+
+                    <p>
+                        🟢
+                        <strong>
+                            Status:
+                        </strong>
+
+                        <span
+                            style="
+                                color:
+                                ${eligibility.status
+                                    ? 'green'
+                                    : 'red'
+                                };
+                                font-weight: bold;
+                            "
+                        >
+                            ${eligibility.msg}
+                        </span>
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="contact-btn"
+                    onclick="
+                        checkAuthToViewContact(
+                            '${donor.phone}'
+                        )
+                    "
+                >
+                    🔒 Login to View Contact
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.innerHTML +=
+            cardHTML;
+
+    }
+);
+```
+
+}
+
+// 4. Fetch Donors from Backend API
+
+async function loadDonorsFromAPI() {
+
+```
+try {
+
+    const response =
+        await fetch(
+            'http://localhost:5000/api/donors'
+        );
+
+
+    if (response.ok) {
+
+        const apiDonorsJson =
+            await response.json();
+
+        donors =
+            apiDonorsJson;
+
+    }
+
+}
+
+catch (error) {
+
+    console.log(
+        "Backend server offline. Showing local sample JSON data."
+    );
+
+}
+
+finally {
+
+    displayDonors(
+        donors
+    );
+
+}
+```
+
+}
+
+// 5. Filter Donors
+
+function filterDonors() {
+
+```
+const selectedGroup =
+    document.getElementById(
+        'bloodGroup'
+    ).value;
+
+
+const selectedLocation =
+    document.getElementById(
+        'location'
+    ).value
+    .toLowerCase();
+
+
+const filtered =
+    donors.filter(
+        donor => {
+
+            const matchesGroup =
+                selectedGroup === ''
+                ||
+                donor.bloodGroup ===
+                selectedGroup;
+
+
+            const matchesLocation =
+                selectedLocation === ''
+                ||
+                donor.location
+                    .toLowerCase()
+                    .includes(
+                        selectedLocation
+                    );
+
+
+            return (
+                matchesGroup &&
+                matchesLocation
+            );
+
+        }
+    );
+
+
+displayDonors(
+    filtered
+);
+```
+
+}
+
+// Initial Load
+
+document.addEventListener(
+'DOMContentLoaded',
+() => {
+
+```
+    if (
+        document.getElementById(
+            'donorList'
+        )
+    ) {
+
+        loadDonorsFromAPI();
+
+    }
+
+}
+```
+
+);
+
+[END script.js]
+
+==================================================
+CURRENT PROJECT STATUS
+======================
+
+The frontend prototype is already created.
+
+Current working concepts:
+
+1. Home page
+2. Login page UI
+3. Donor registration page UI
+4. Blood group search
+5. Location search
+6. Donor cards
+7. Donor eligibility calculation
+8. Haversine distance calculation
+9. Emergency hotline section
+10. Basic protected contact concept
+11. Sample donor data
+12. Backend API placeholder
+
+However, the following major parts are NOT fully implemented yet:
+
+* Node.js backend
+* Express server
+* MongoDB/Mongoose database
+* Real registration
+* Real login
+* Password hashing
+* Authentication
+* Authorization
+* Protected donor contact API
+* Donor CRUD
+* User profile
+* Dashboard
+* Admin functionality
+* Database seed system
+* Production-quality error handling
+* Complete frontend/backend integration
+* Professional final UI improvements
+* Complete project documentation
+
+==================================================
+IMPORTANT INSTRUCTION FOR THE NEXT DEVELOPER/GPT
+================================================
+
+Use this file as the exact starting point for the LifeSave project.
+
+Do NOT discard the existing project unnecessarily.
+
+Do NOT only explain what needs to be done.
+
+Complete the project.
+
+The target stack is:
+
+Frontend:
+HTML + CSS + Vanilla JavaScript
+
+Backend:
+Node.js + Express.js
+
+Database:
+MongoDB + Mongoose
+
+Authentication:
+Secure password hashing + JWT/session-based authentication
+
+The final project should be professional, functional, secure at a reasonable university-project level, and EASY TO RUN.
+
+Prefer a simple architecture.
+
+Ideally, Express should serve the frontend so that I only need to run one server.
+
+The final application should preferably run at:
+
+http://localhost:5000
+
+The final project should include all necessary files, complete code, database setup, authentication, APIs, dashboard, donor management, privacy protection, seed data, README, and a very easy run guide.
+
+Do not make the project unnecessarily complicated.
+
+==================================================
+END OF CURRENT PROJECT FILE
+===========================
